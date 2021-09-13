@@ -9,6 +9,25 @@ if (process.argv.length < 3){
     process.exit()
 }
 
-let output = libFactorial.factorial(parseInt(process.argv[2]))
+function factorial( max:number) :number{
+    let i:number = max;
+    let result:number = 1;
 
-console.log("your output " , output)
+    while (i >= 2) {
+        result *= i--;
+    }
+
+    return result;
+}
+
+console.time("js fact")
+let jsOutput = factorial(parseInt(process.argv[2]))
+console.log("js out: ", jsOutput)
+console.timeEnd("js fact")
+
+console.time("C fact")
+let output = libFactorial.factorial(parseInt(process.argv[2]))
+console.log("C output " , output)
+console.timeEnd("C fact")
+
+
